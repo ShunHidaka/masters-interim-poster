@@ -1,0 +1,179 @@
+\documentclass[final, dvipdfmx]{beamer}
+\usepackage[
+	orientation=portrait,
+	size=a0paper,
+	scale=1.4,
+	debug
+	]{beamerposter}
+\mode<presentation>{
+	\usetheme{singapore}
+	\useoutertheme{infolines}
+	\usecolortheme{rose} % いじらない
+	\usefonttheme{professionalfonts}
+	\useinnertheme{rectangles}
+	\useoutertheme{tree}
+}
+% 日本語(非英語)に対応
+\usepackage[japanese]{babel}
+% ポスターで不要な要素の非表示
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+% 日本語をゴシック体
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+% blockの色の設定
+%\setbeamercolor{block body}{bg=white, fg=black} % tcbsetforeverylayer とかでやったほうがいいかも
+% フォントの大きさの設定
+%\setbeamerfont{caption}{size=\normalsize}
+\setbeamerfont{block title}{size=\LARGE}
+\setbeamerfont*{itemize/enumerate body}{size=\normalsize}
+\setbeamerfont*{itemize/enumerate subbody}{parent=itemize/enumerate body, size=\normalsize}
+\setbeamerfont*{itemize/enumerate subsubbody}{parent=itemize/enumerate subbody, size=\normalsize}
+% 箇条書きのアイコンを変更
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{itemize subitem}[triangle]
+%\setbeamercolor{enumerate item}{fg=black}
+% 参考文献のアイコンを標準のに
+\setbeamertemplate{bibliography item}[text]
+% 参考文献の文字色を変更
+\setbeamercolor*{bibliography item}{fg=black}
+\setbeamercolor*{bibliography entry author}{fg=black}
+\setbeamercolor*{bibliography entry title}{fg=black}
+\setbeamercolor*{bibliography entry location}{fg=black}
+% Beamer-blockの実装をtcolorboxで行う、TeX Live 2024が必要
+\useinnertheme[rounded]{tcolorbox}
+\tcbsetforeverylayer{
+  frame style={draw=block title.bg, line width=4mm}
+}
+
+% 数式
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{mathtools}
+% 行列の表現を拡張する、まだよくわかっていない
+\usepackage{nicematrix}
+% 画像・表
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{here}
+% 図表のcaptionを設定
+\usepackage{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\captionsetup[figure]{name=図}
+\captionsetup[table]{name=表}
+\setbeamertemplate{caption}[numbered]
+% 画像フォルダへのパスを追加
+\graphicspath{ {fig/} }
+% 行間
+%\usepackage{setspace} % algorithmのキャプションが崩れる
+% 疑似コード
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algnewcommand{\IIf}[1]{\State\algorithmicif\ #1\ \algorithmicthen}
+\algnewcommand{\EndIIf}{\unskip\ \algorithmicend\ \algorithmicif}
+% タイトルの背景に色を付けるために使用
+\usepackage{tcolorbox}
+% コメントアウト
+\usepackage{comment}
+% ダミーテキスト
+\usepackage{lipsum}
+% PDFのメタ情報・URL
+\usepackage{hyperref}
+\usepackage{pxjahyper}
+\hypersetup{
+	setpagesize=false,
+	bookmarks=true,
+	bookmarksdepth=tocdepth,
+	bookmarksnumbered=true,
+	hidelinks,
+	hyperfootnotes=false,
+	pdftitle={シフト線形方程式に対するMINRES法の適用と性能評価},
+	pdfsubject={電気通信大学大学院修士課程中間発表},
+	pdfauthor={日高 俊太郎},
+	pdfkeywords={シフト線形方程式, Krylov部分空間法, MINRES法, 並列化, 高性能計算}
+}
+
+% コマンドの設定
+\newcommand{\equref}[1]{(\ref{#1})}					% 括弧で囲まれた参照
+\newcommand{\Equref}[1]{式(\ref{#1})}				% 数式の参照
+\newcommand{\Tabref}[1]{表\ref{#1}}					% 表の参照
+\newcommand{\Figref}[1]{図\ref{#1}}					% 図の参照
+\renewcommand{\top}[0]{\mathrm{T}}					% 転置
+\newcommand{\htop}[0]{\mathrm{H}}					% Hermite転置
+\renewcommand{\i}[0]{\mathrm{i}}					% 虚数単位
+\newcommand{\KS}[3]{\mathcal{K}_{#1}({#2}, {#3})}			% Krylov Subspace
+\newcommand{\inpro}[2]{\langle #1, #2 \rangle}			% 内積
+\newcommand{\conj}[1]{\overline{#1}}					% 複素共役
+% itemizeのシンボルをitemize外で使えるようにする
+% https://tex.stackexchange.com/questions/519279/beamer-bullets-without-itemize/519318#519318
+%\newcommand{\myitem}{\par\leavevmode\hskip\leftmarginii \hbox to\labelwidth{\hss\usebeamercolor[fg]{itemize subitem}\usebeamertemplate{itemize subitem}}\hspace{\labelsep}}
+\newcommand{\myitem}{
+	\leavevmode\hskip\leftmarginii \hbox to
+	\labelwidth{\hss\usebeamercolor[fg]{itemize subitem}\usebeamertemplate{itemize subitem}}
+}
+
+% 行間の設定
+\renewcommand{\baselinestretch}{1.2}
+% 数式の上下のスペースの変更
+\AtBeginDocument{
+  \abovedisplayskip     = 0.6\abovedisplayskip
+  \abovedisplayshortskip= 0.6\abovedisplayshortskip
+  \belowdisplayskip     = 0.6\belowdisplayskip
+  \belowdisplayshortskip= 0.6\belowdisplayshortskip
+}
+
+
+\begin{document}
+
+\begin{frame}[t]{}
+	\input{./tex/title}
+	\vspace{-\baselineskip}
+	\begin{columns}[T]
+	\begin{column}{.49\linewidth}
+		\begin{block}{研究目的}
+			\vspace{0.2\baselineskip}
+			\input{./tex/01-introduction.tex}
+		\end{block}
+		\begin{block}{研究背景}
+			\vspace{0.2\baselineskip}
+			\input{./tex/02-background.tex}
+		\end{block}
+		\begin{block}{shifted MINRES法}
+			\vspace{0.2\baselineskip}
+			\input{./tex/03-sminres.tex}
+		\end{block}
+	\end{column}
+	\hspace{0.0\columnwidth}
+	\begin{column}{.49\linewidth}
+		\begin{block}{shifted MINRES法の並列化モデル}
+			\vspace{0.2\baselineskip}
+			\input{./tex/04-parallel.tex}
+		\end{block}
+		\begin{block}{数値実験}
+			\vspace{0.2\baselineskip}
+			\input{./tex/05-experiment.tex}
+		\end{block}
+		\begin{block}{実験結果}
+			\vspace{0.2\baselineskip}
+			\input{./tex/06-results.tex}
+		\end{block}
+		\begin{block}{まとめと今後の展望}
+			\vspace{0.2\baselineskip}
+			\input{./tex/07-conclusion.tex}
+		\end{block}
+		\begin{block}{参考文献}
+			\input{./tex/bibliography.tex}
+		\end{block}
+	\end{column}
+	\end{columns}
+	\vspace{0.27\baselineskip}
+	\center{電気通信大学大学院修士課程中間発表}
+\end{frame}
+
+\end{document}
+
+
+% 参考
+% https://github.com/hyoiutu/myPosterTemplate/tree/master

@@ -21,8 +21,15 @@ int main(int argc, char** argv) {
 
   // 行列の用意
   std::string Aname;
-  if (argc < 2) Aname = "../../../GSMINRESpp/data/ELSES_MATRIX_BNZ30_A.mtx";
-  else          Aname = argv[1];
+  int flag;
+  if (argc < 3) {
+    std::cerr << "Invalid argument." << std::endl;
+    return 1;
+  }
+  else {
+    Aname = argv[1];
+    flag = std::stoi(argv[2]);
+  }
   auto A = utils::load_mm_csr(Aname);
   std::size_t N = A.row_end - A.row_start;
   // 右辺ベクトルの用意
@@ -31,7 +38,7 @@ int main(int argc, char** argv) {
   // シフトの用意
   std::size_t M;
   std::vector<std::complex<double>> sigma;
-  utils::set_shift(M, sigma);
+  utils::set_shift(M, sigma, flag);
   // 担当するシフトの範囲の計算（将来的には担当分だけメモリ割り当てするようにする）
   std::size_t M_base  = M / size, M_remainder = M % size;
   std::size_t m_size  = M_base + (rank < M_remainder ? 1 : 0);
@@ -123,7 +130,7 @@ int main(int argc, char** argv) {
 
   for (std::size_t r = 0; r < size; ++r) {
     if (r == rank) {
-      std::cout << "# Hybrid Parallel sMINRES Method with MPI-Based Shift Distribution and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = " << rank << ")\n"
+      std::cout << "# Hybrid Parallel sMINRES Method with MPI-Based Shift Distribution and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = " << rank << "/" << size << ")\n"
                 << "# A = " << Aname << "\n"
                 << "# status = " << conv_num << "/" << m_size << ", "
                 << "time = " << timer.elapsed_sec()  << " sec"<< std::endl;

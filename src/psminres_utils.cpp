@@ -5,11 +5,25 @@
 
 namespace utils {
 
-  void set_shift(std::size_t& M, std::vector<std::complex<double>>& shift) {
-    M = 10;
-    shift.resize(M);
-    for (std::size_t i = 0; i < M; ++i){
-      shift[i] = std::polar(0.01, 2*std::acos(-1)*(i+0.5)/M);
+  void set_shift(std::size_t& M, std::vector<std::complex<double>>& shift, int flag) {
+    switch (flag) {
+    case 1:
+      M = 50;
+      shift.resize(M);
+      for (std::size_t i = 0; i < M; ++i)
+	shift[i] = std::polar(0.1, 2*std::acos(-1)*(i+0.5)/M);
+      break;
+    case 2:
+      M = 100;
+      shift.resize(M);
+      for (std::size_t i = 0; i < M; ++i)
+	shift[i] = std::complex<double>(-0.1+i*(0.2/(M-1)), 0.1);
+      break;
+    default:
+      M = 10;
+      shift.resize(M);
+      for (std::size_t i = 0; i < M; ++i)
+	shift[i] = std::polar(0.1, 2*std::acos(-1)*(i+0.5)/M); 
     }
   }
 

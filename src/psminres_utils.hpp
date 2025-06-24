@@ -15,7 +15,7 @@ namespace utils {
 
   /**
    */
-  void set_shift(std::size_t& M, std::vector<std::complex<double>>& shift);
+  void set_shift(std::size_t& M, std::vector<std::complex<double>>& shift, int flag);
 
   /**
    * \brief 行分割可能なCompressed Sparse Row 形式

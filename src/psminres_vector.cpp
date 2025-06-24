@@ -16,8 +16,15 @@ int main(int argc, char** argv) {
 
   // 行列の用意
   std::string Aname;
-  if (argc < 2) Aname = "../../../GSMINRESpp/data/ELSES_MATRIX_BNZ30_A.mtx";
-  else          Aname = argv[1];
+  int flag;
+  if (argc < 3) {
+    std::cerr << "Invalid argument." << std::endl;
+    return 1;
+  }
+  else {
+    Aname = argv[1];
+    flag = std::stoi(argv[2]);
+  }
   auto A = utils::load_distributed_mm_csr(Aname, rank, size, MPI_COMM_WORLD);
   std::size_t n_global = A.n_global, n_local = A.row_end - A.row_start;
   // 右辺ベクトルの用意
@@ -26,7 +33,7 @@ int main(int argc, char** argv) {
   // シフトの用意
   std::size_t M;
   std::vector<std::complex<double>> sigma;
-  utils::set_shift(M, sigma);
+  utils::set_shift(M, sigma, flag);
   // 解ベクトルの用意
   std::vector<std::vector<std::complex<double>>> x_local(M, std::vector<std::complex<double>>(n_local, {0.0, 0.0}));
 
@@ -128,7 +135,7 @@ int main(int argc, char** argv) {
   timer.stop();
 
   if (rank == 0)
-    std::cout << "# Hybrid Parallel sMINRES Method with MPI-Based Domain-Decomposed Vectors and OpenMP-Based Parallelism for Shift Loop and SpMV\n"
+    std::cout << "# Hybrid Parallel sMINRES Method with MPI-Based Domain-Decomposed Vectors and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = " << rank << "/" << size << ")\n"
               << "# A = " << Aname << "\n"
               << "# status = " << conv_num << "/" << M << ", "
               << "time = " << timer.elapsed_sec()  << " sec"<< std::endl;

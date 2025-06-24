@@ -1,0 +1,10 @@
+orange01.ced.cei.uec.ac.jp slots=1
+orange02.ced.cei.uec.ac.jp slots=1
+orange03.ced.cei.uec.ac.jp slots=1
+orange04.ced.cei.uec.ac.jp slots=1
+orange05.ced.cei.uec.ac.jp slots=1
+orange06.ced.cei.uec.ac.jp slots=1
+orange07.ced.cei.uec.ac.jp slots=1
+orange08.ced.cei.uec.ac.jp slots=1
+orange09.ced.cei.uec.ac.jp slots=1
+orange10.ced.cei.uec.ac.jp slots=1

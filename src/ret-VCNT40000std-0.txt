@@ -1,0 +1,22 @@
+# Hybrid Parallel sMINRES Method with MPI-Based Domain-Decomposed Vectors and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = 0/4)
+# A = ../data/ELSES_MATRIX_VCNT40000std_A.mtx
+# status = 10/10, time = 9.49179 sec
+ 0   0.095106   0.030902   470  1.87092e-11  1.87110e-11
+ 1   0.058779   0.080902   239  1.92322e-11  1.92323e-11
+ 2   0.000000   0.100000   198  1.71700e-11  1.71707e-11
+ 3  -0.058779   0.080902   240  1.80598e-11  1.80601e-11
+ 4  -0.095106   0.030902   600  1.94613e-11  1.94619e-11
+ 5  -0.095106  -0.030902   600  1.94613e-11  1.94620e-11
+ 6  -0.058779  -0.080902   240  1.80598e-11  1.80600e-11
+ 7  -0.000000  -0.100000   198  1.71700e-11  1.71706e-11
+ 8   0.058779  -0.080902   239  1.92322e-11  1.92326e-11
+ 9   0.095106  -0.030902   470  1.87092e-11  1.87110e-11
+
+--------------------
+
+# Hybrid Parallel sMINRES Method with MPI-Based Shift Distribution and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = 0/4)
+# A = ../data/ELSES_MATRIX_VCNT40000std_A.mtx
+# status = 3/3, time = 36.9565 sec
+ 0   0.095106   0.030902   470  1.86776e-11  1.86806e-11
+ 1   0.058779   0.080902   239  1.92255e-11  1.92261e-11
+ 2   0.000000   0.100000   198  1.71699e-11  1.71705e-11

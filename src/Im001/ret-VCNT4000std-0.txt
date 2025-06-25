@@ -1,0 +1,54 @@
+# Hybrid Parallel sMINRES Method with MPI-Based Domain-Decomposed Vectors and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = 0/4)
+# A = ../data/ELSES_MATRIX_VCNT4000std_A.mtx
+# status = 10/10, time = 9.7497 sec
+ 0   0.009511   0.003090  4022  6.11526e-12  6.12371e-12
+ 1   0.005878   0.008090  1961  6.23590e-12  6.23874e-12
+ 2   0.000000   0.010000  1652  6.31398e-12  6.31635e-12
+ 3  -0.005878   0.008090  2045  6.29446e-12  6.29739e-12
+ 4  -0.009511   0.003090  4703  6.29628e-12  6.31132e-12
+ 5  -0.009511  -0.003090  4703  6.29628e-12  6.31135e-12
+ 6  -0.005878  -0.008090  2045  6.29446e-12  6.29763e-12
+ 7  -0.000000  -0.010000  1652  6.31398e-12  6.31640e-12
+ 8   0.005878  -0.008090  1961  6.23590e-12  6.23852e-12
+ 9   0.009511  -0.003090  4022  6.11526e-12  6.12387e-12
+
+--------------------
+
+# Hybrid Parallel sMINRES Method with MPI-Based Shift Distribution and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = 0/4)
+# A = ../data/ELSES_MATRIX_VCNT4000std_A.mtx
+# status = 3/3, time = 0.461753 sec
+ 0   0.009511   0.003090  4022  6.28852e-12  6.29555e-12
+ 1   0.005878   0.008090  1958  6.29505e-12  6.29793e-12
+ 2   0.000000   0.010000  1652  6.26853e-12  6.27026e-12
+# Hybrid Parallel sMINRES Method with MPI-Based Shift Distribution and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = 1/4)
+# A = ../data/ELSES_MATRIX_VCNT4000std_A.mtx
+# status = 3/3, time = 0.535653 sec
+ 3  -0.005878   0.008090  2044  6.24348e-12  6.24636e-12
+ 4  -0.009511   0.003090  4698  6.31768e-12  6.33094e-12
+ 5  -0.009511  -0.003090  4698  6.31768e-12  6.33088e-12
+# Hybrid Parallel sMINRES Method with MPI-Based Shift Distribution and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = 2/4)
+# A = ../data/ELSES_MATRIX_VCNT4000std_A.mtx
+# status = 2/2, time = 0.230311 sec
+ 6  -0.005878  -0.008090  2044  6.24348e-12  6.24628e-12
+ 7  -0.000000  -0.010000  1652  6.26853e-12  6.27042e-12
+# Hybrid Parallel sMINRES Method with MPI-Based Shift Distribution and OpenMP-Based Parallelism for Shift Loop and SpMV (rank = 3/4)
+# A = ../data/ELSES_MATRIX_VCNT4000std_A.mtx
+# status = 2/2, time = 0.45101 sec
+ 8   0.005878  -0.008090  1958  6.29505e-12  6.29774e-12
+ 9   0.009511  -0.003090  4022  6.28852e-12  6.29536e-12
+
+--------------------
+
+# No parallel sMINRES Method (OpenMP paralleism SpMV)
+# A = ../data/ELSES_MATRIX_VCNT4000std_A.mtx
+# status = 10/10, time = 1.38954 sec
+ 0   0.009511   0.003090  4022  6.28852e-12  6.29555e-12
+ 1   0.005878   0.008090  1958  6.29505e-12  6.29793e-12
+ 2   0.000000   0.010000  1652  6.26853e-12  6.27026e-12
+ 3  -0.005878   0.008090  2044  6.24348e-12  6.24636e-12
+ 4  -0.009511   0.003090  4698  6.31768e-12  6.33094e-12
+ 5  -0.009511  -0.003090  4698  6.31768e-12  6.33088e-12
+ 6  -0.005878  -0.008090  2044  6.24348e-12  6.24628e-12
+ 7  -0.000000  -0.010000  1652  6.26853e-12  6.27042e-12
+ 8   0.005878  -0.008090  1958  6.29505e-12  6.29774e-12
+ 9   0.009511  -0.003090  4022  6.28852e-12  6.29536e-12

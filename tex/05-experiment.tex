@@ -1,5 +1,79 @@
 
 
-実行時間の比較
+CED上で2種類の並列化モデルおよび逐次実装の実行時間（秒）を比較した．
+\begin{itemize} \setlength{\itemsep}{0pt}
+	\item 問題設定
+		\begin{itemize} \setlength{\itemsep}{0pt}
+			\item VCNT4000std（4000次実対称），VCNT40000std（40000次実対称）\cite{ref-ELSES-matrix}
+			\item $\sigma^{(k)} = 0.01 \exp(2\pi(k-0.5)/M),\ M=50$（実験1）
+			\item $\sigma^{(k)} = -0.1+k*0.2/M + 0.01\mathrm{i},\ M=100$（実験2）
+			\item 収束条件: 相対残差 $\|\vb{r}_j\| / \|\vb{r}_0\| \leq 10^{-13}$
+		\end{itemize}
+\end{itemize}
+%%%%%
+\vspace{0.2\baselineskip}
+\begin{itemize}
+	\item 実験1
+\end{itemize}
+\vspace{-0.7\baselineskip}
+\begin{table}
+	\begin{minipage}[b]{0.48\textwidth}
+	\centering
+		\caption*{VCNT4000std}
+		\vspace{-8pt}
+		\begin{tabular}{>{\centering\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{5.8cm}}
+			\hline
+			逐次		& モデル1	& モデル2	\\ \hline
+			3.44726	& 13.5996	& 0.988548	\\ \hline
+		\end{tabular}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+	\centering
+		\caption*{VCNT40000std}
+		\vspace{-8pt}
+		\begin{tabular}{>{\centering\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{5.8cm}}
+			\hline
+			逐次		& モデル1	& モデル2	\\ \hline
+			676.268	& 156.539	& 912.709	\\ \hline
+		\end{tabular}
+	\end{minipage}
+\end{table}
+%%%%%
+\vspace{0.5\baselineskip}
+\begin{itemize}
+	\item 実験2
+\end{itemize}
+\vspace{-0.7\baselineskip}
+\begin{table}
+	\begin{minipage}[b]{0.48\textwidth}
+	\centering
+		\caption*{VCNT4000std}
+		\vspace{-8pt}
+		\begin{tabular}{>{\centering\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{5.8cm}}
+			\hline
+			逐次		& モデル1	& モデル2	\\ \hline
+			2.55095	& 3.44825	& 0.267222	\\ \hline
+		\end{tabular}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+	\centering
+		\caption*{VCNT40000std}
+		\vspace{-8pt}
+		\begin{tabular}{>{\centering\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{5.8cm}>{\centering\arraybackslash}p{5.8cm}}
+			\hline
+			逐次		& モデル1	& モデル2	\\ \hline
+			160.371	& 32.1898	& 207.159	\\ \hline
+		\end{tabular}
+	\end{minipage}
+\end{table}
+%%%%%
+\vspace{0.5\baselineskip}
+\begin{itemize}
+	\item 大規模行列では，通信の相対負荷が低下し，モデル1が最も高速だった
+	\item 小規模行列では，通信のないモデル2が最も高速に動作した
+	\item 超大規模行列では，モデル1がスケーラブルな解法として期待できる
+\end{itemize}
 
-逐次　：　モデル１　：　モデル２
+

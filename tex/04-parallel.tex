@@ -5,6 +5,7 @@ sminresでは，すべてのシフトに対して共通の基底を用いて反�
 
 本研究では，以下の2種類の並列化モデルを実装・比較した：
 
+\vspace{10pt}
 \textcolor{red}{モデル１}：ベクトル分割(MPI)＋シフト分割(OpenMP)
 \begin{itemize} \setlength{\itemsep}{0pt}
 	\item MPI によるベクトルの\textcolor{red}{行方向分割}（ドメイン分割）
@@ -19,23 +20,25 @@ sminresでは，すべてのシフトに対して共通の基底を用いて反�
 	\item 通信を必要としない（行列は各プロセスが全体を保持）
 \end{itemize}
 
+\vspace{1.06pt}
 \begin{figure}[H]
 	\begin{center}
 		\begin{minipage}[t]{0.49\columnwidth}
 			\centering
-			\colorbox{white}{ \includegraphics[scale=1.8]{./fig/parallel-model1.png} }
+			\colorbox{white}{ \includegraphics[scale=2.1]{./fig/parallel-model1.png} }
 			\caption{並列化モデル１}
 			\label{fig-parallel-model1}
 		\end{minipage}
 		\begin{minipage}[t]{0.49\columnwidth}
 			\centering
-			\colorbox{white}{ \includegraphics[scale=1.8]{./fig/parallel-model2.png} }
+			\colorbox{white}{ \includegraphics[scale=2.1]{./fig/parallel-model2.png} }
 			\caption{並列化モデル２}
 			\label{fig-parallel-model2}
 		\end{minipage}
 	\end{center}
 \end{figure}
 
+\vspace{5pt}
 モデル1における通信の詳細：
 \begin{table}[H]
 	\centering

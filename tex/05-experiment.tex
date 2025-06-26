@@ -4,12 +4,12 @@ CED上で2種類の並列化モデルおよび逐次実装の実行時間（秒�
 \begin{itemize} \setlength{\itemsep}{0pt}
 	\item 問題設定
 		\begin{itemize} \setlength{\itemsep}{0pt}
-			\item CPU: Intel(R) Core(TM) i7-12700 12コア20スレッド
+			\item Intel Core i7-12700 (12 cores), GNU C++ Compiler, Netlib BLAS/LAPACK
 			\item VCNT4000std（4000次実対称），VCNT40000std（40000次実対称）\cite{ref-ELSES-matrix}
 			\item $\sigma^{(k)} = 0.01 \exp(2\pi(k-0.5)/M),\ M=50$（実験1）
 			\item $\sigma^{(k)} = -0.1+k*0.2/M + 0.01\mathrm{i},\ M=100$（実験2）
 			\item 収束条件: 相対残差 $\|\vb{r}_j\| / \|\vb{r}_0\| \leq 10^{-13}$
-			\item MPI: 4並列，OpenMP: --並列
+			\item MPI: 4並列，OpenMP: 指定なし(最大20スレッド)
 		\end{itemize}
 \end{itemize}
 %%%%%
